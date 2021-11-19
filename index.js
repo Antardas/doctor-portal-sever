@@ -171,7 +171,7 @@ async function run() {
             res.json(result);
         })
 
-        // Get all Doctors
+        // Get all Doctors fdf
         app.get('/doctors', async (req, res) => {
             const result = await doctorsCollection.find({}).toArray();
             res.json(result);
