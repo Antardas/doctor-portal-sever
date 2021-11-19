@@ -18,6 +18,7 @@ app.use(fileUpload());
 
 const serviceAccount = require("./doctors-portaall-Firebase-admin-sdk.json");
 
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
