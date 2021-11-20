@@ -13,11 +13,11 @@ const fileUpload = require('express-fileupload');
 app.use(cors());
 app.use(express.json());
 app.use(fileUpload());
+
 // doctors-portaall-Firebase-admin-sdk.json 
 
 
-const serviceAccount = require("./doctors-portaall-Firebase-admin-sdk.json");
-
+const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SDK);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -85,7 +85,6 @@ async function run() {
             const date = new Date(req.query?.date).toLocaleDateString();
             const requester = req.docodedEmail;
             if (requester) {
-
                 const query = { email: email, date: date }
                 const cursor = await appointmentsCollection.find(query);
                 const appointments = await cursor.toArray();
@@ -150,8 +149,6 @@ async function run() {
             const query = { _id: objectId(id) };
             console.log(query);
             const result = await appointmentsCollection.findOne(query);
-            // console.log(result);
-
             res.json(result);
         })
 
@@ -197,6 +194,7 @@ async function run() {
     }
 }
 run().catch(console.dir)
+
 
 app.get('/', (req, res) => {
     res.send('Doctors Portal Server Runing');
