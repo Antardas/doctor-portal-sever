@@ -23,7 +23,7 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
-// Database url f
+// Database url 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mc60i.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
